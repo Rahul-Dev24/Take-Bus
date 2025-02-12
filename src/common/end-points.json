@@ -1,0 +1,7 @@
+{
+    "FILE_UPLOAD": "upload/image",
+    "USER": {
+        "UPDATE_USER": "/updateUser",
+        "GET_USER": "/getUser"
+    }
+}

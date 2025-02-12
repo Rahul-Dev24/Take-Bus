@@ -1,0 +1,55 @@
+{
+    "userMenu": [
+        {
+            "id": 1,
+            "label": "Home",
+            "route": "",
+            "icon": "/assets/img/home.png",
+            "role": "user"
+        },
+        {
+            "id": 2,
+            "label": "Flights",
+            "route": "",
+            "icon": "/assets/img/flight.png",
+            "role": "user"
+        },
+        {
+            "id": 3,
+            "label": "Hotals",
+            "route": "",
+            "icon": "/assets/img/hotel.png",
+            "role": "user"
+        },
+        {
+            "id": 4,
+            "label": "Bus",
+            "route": "",
+            "icon": "/assets/img/bus.png",
+            "role": "user"
+        },
+        {
+            "id": 5,
+            "label": "Holidays",
+            "route": "",
+            "icon": "/assets/img/beach.png",
+            "role": "user"
+        },
+        {
+            "id": 6,
+            "label": "Hotels & Flights",
+            "route": "",
+            "icon": "/assets/img/arrival-flight.png",
+            "role": "user"
+        }
+    ],
+    "adminMenu": [
+        {
+            "id": 6,
+            "label": "Hotels & Flights",
+            "route": "",
+            "icon": "/assets/img/arrival-flight.png",
+            "role": "user"
+        }
+    ]
+}

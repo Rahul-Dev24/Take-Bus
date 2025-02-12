@@ -1,0 +1,252 @@
+<div class="flex items-center justify-center">
+    <div class="w-[99%] mx-2 md:mx-0 lg:mx-0 flex flex-col bg-white rounded-lg relative justify-center items-start">
+        <div class="flex items-center w-full p-3 px-4 gap-2">
+            <div class="w-5 cursor-pointer" routerLink="/user/home">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z">
+                    </path>
+                </svg>
+            </div>
+            <h1 class=" w-full text-left text-[1.1rem] text-gray-500">Bookings</h1>
+            <!-- @if(userData){
+            <div (click)="openEdit = !openEdit"
+                class="w-8 h-8 absolute cursor-pointer right-3  bg-blue-500 rounded-full flex items-center justify-center">
+                <button class="w-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,1)">
+                        <path
+                            d="M15.7279 9.57627L14.3137 8.16206L5 17.4758V18.89H6.41421L15.7279 9.57627ZM17.1421 8.16206L18.5563 6.74785L17.1421 5.33363L15.7279 6.74785L17.1421 8.16206ZM7.24264 20.89H3V16.6473L16.435 3.21231C16.8256 2.82179 17.4587 2.82179 17.8492 3.21231L20.6777 6.04074C21.0682 6.43126 21.0682 7.06443 20.6777 7.45495L7.24264 20.89Z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            } -->
+        </div>
+
+        <hr class="w-full h-1 bg-gray-100 border-0 rounded-sm mt-1 dark:bg-gray-700">
+
+        <div class="timeline-container p-4 w-full flex items-center">
+            <!-- Previous Button -->
+            <div class="w-12 h-10 bg-blue-400 flex justify-center items-center rounded-lg p-2 text-white cursor-pointer transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                (click)="scrollLeft()" aria-label="Scroll Left">
+                <svg class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M4.83582 12L11.0429 18.2071L12.4571 16.7929L7.66424 12L12.4571 7.20712L11.0429 5.79291L4.83582 12ZM10.4857 12L16.6928 18.2071L18.107 16.7929L13.3141 12L18.107 7.20712L16.6928 5.79291L10.4857 12Z">
+                    </path>
+                </svg>
+            </div>
+
+            <!-- Timeline Dates -->
+            <div #timelineList class="timeline-list w-[90vw] flex overflow-x-auto scrollbar-hide whitespace-nowrap">
+                <div *ngFor="let date of dates; let i = index"
+                    class="timeline-item flex flex-col items-center justify-center text-center px-2 py-1 border rounded-md mx-1 cursor-pointer transition duration-200"
+                    [class.bg-black]="i === activeIndex" [class.text-white]="i === activeIndex"
+                    [class.text-gray-800]="i !== activeIndex" [class.bg-gray-100]="i !== activeIndex"
+                    (click)="setActiveDate(i)">
+                    <span class="font-bold uppercase text-sm">{{ date.day }}</span>
+                    <span class="text-xs">{{ date.date }}</span>
+                </div>
+            </div>
+
+            <!-- Next Button -->
+            <div class="w-12 h-10 bg-blue-400 rounded-lg flex justify-center items-center text-white cursor-pointer transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                (click)="scrollRight()" aria-label="Scroll Right">
+                <svg class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19.1642 12L12.9571 5.79291L11.5429 7.20712L16.3358 12L11.5429 16.7929L12.9571 18.2071L19.1642 12ZM13.5143 12L7.30722 5.79291L5.89301 7.20712L10.6859 12L5.89301 16.7929L7.30722 18.2071L13.5143 12Z">
+                    </path>
+                </svg>
+            </div>
+        </div>
+
+        <hr class="w-full h-1 bg-gray-100 border-0 rounded-sm mt-1 dark:bg-gray-700">
+        <div class="flex p-4 w-full justify-between">
+            <div
+                class="w-[24%] hidden h-fit md:flex lg:flex items-start justify-center flex-col bg-gray-100 rounded-lg">
+                <!-- heading -->
+                <div class="flex w-full justify-between items-center px-4 py-3">
+                    <h3 class="text-gray-600 font-semibold">Filter</h3>
+                    <h4
+                        class="text-blue-500 px-4 py-1 rounded-full text-sm font-semibold border cursor-pointer hover:bg-blue-500 hover:text-white border-blue-500">
+                        Clear (0)
+                    </h4>
+                </div>
+                <hr class="w-full h-1 bg-white border-0 rounded-sm dark:bg-gray-700">
+                <div class="flex flex-col gap-2 p-4">
+
+                    <h3 class="mb-1 font-semibold text-gray-500 dark:text-white">Price</h3>
+                    <div class="flex pl-4 items-center">
+                        <input id="link-checkbox" type="checkbox" value=""
+                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-300">₹ 0
+                            to ₹ 4000</label>
+                    </div>
+                    <div class="flex pl-4 items-center">
+                        <input id="link-checkbox" type="checkbox" value=""
+                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-300">₹
+                            4000
+                            to ₹ 8000</label>
+                    </div>
+                    <div class="flex pl-4 items-center">
+                        <input id="link-checkbox" type="checkbox" value=""
+                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-300">₹
+                            8000
+                            to ₹ 12000</label>
+                    </div>
+                    <div class="flex pl-4 items-center">
+                        <input id="link-checkbox" type="checkbox" value=""
+                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-300">₹
+                            12000
+                            to ₹ 15000</label>
+                    </div>
+                </div>
+                <hr class="w-full h-1 bg-white border-0 rounded-sm dark:bg-gray-700">
+                <div class="flex flex-col gap-2 p-4">
+
+                    <h3 class="mb-1 font-semibold text-gray-500 dark:text-white">Category</h3>
+                    <div class="flex pl-4 items-center">
+                        <input id="link-checkbox" type="checkbox" value=""
+                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-300">Bus
+                            Booking</label>
+                    </div>
+                    <div class="flex pl-4 items-center">
+                        <input id="link-checkbox" type="checkbox" value=""
+                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-300">
+                            Hotal Booking</label>
+                    </div>
+                    <div class="flex pl-4 items-center">
+                        <input id="link-checkbox" type="checkbox" value=""
+                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-300">
+                            Train Booking</label>
+                    </div>
+                    <div class="flex pl-4 items-center">
+                        <input id="link-checkbox" type="checkbox" value=""
+                            class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-300">
+                            Flight Booking</label>
+                    </div>
+                </div>
+                <hr class="w-full h-1 bg-white border-0 rounded-sm dark:bg-gray-700">
+                <div class="p-8">
+                    <img src="assets/img/signup_banner.jpeg" class="object-cover rounded-lg opacity-85" alt="loading">
+                </div>
+            </div>
+            <div class="md:w-[74%] lg:w-[74%] w-full">
+                <div class="flex p-3 px-5 mb-4  w-full justify-between border border-gray-400 rounded-lg items-center">
+                    <h3 class="text-gray-600 font-semibold  hidden md:block lg:block">Sort By : </h3>
+                    <div class="flex md:w-[80%] lg:w-[80%] w-full justify-around">
+                        <button type="button"
+                            class="text-gray-500 hover:text-white border border-gray-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm  md:px-5 lg:px-5 lg:py-2 md:py-2 text-center focus:text-blue-500 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Most
+                            Popular</button>
+                        <button type="button"
+                            class="text-gray-500 hover:text-white border border-gray-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm  md:px-5 lg:px-5 lg:py-2 md:py-2 text-center focus:text-blue-500 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Price
+                            - Low to High</button>
+                        <button type="button"
+                            class="text-gray-500 hover:text-white border border-gray-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm  md:px-5 lg:px-5 lg:py-2 md:py-2 text-center focus:text-blue-500 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Price
+                            - High to Low</button>
+                        <button type="button"
+                            class="text-gray-500 hover:text-white border border-gray-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm  hidden md:block lg:block md:px-5 lg:px-5 lg:py-2 md:py-2 text-center focus:text-blue-500 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Rating
+                            - High to Low</button>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 h-fit w-full p-4 bg-gray-100 rounded-lg">
+
+                    <div
+                        class="flex flex-col w-full items-start bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <img class="object-cover w-full rounded-t-lg  md:h-auto md:w-64 md:rounded-none md:rounded-s-lg"
+                            src="assets/img/signup_banner.jpeg" alt="Loading...">
+                        <div class="flex flex-col justify-between p-4 leading-normal">
+
+                            <div class="flex justify-between items-start">
+                                <div class="flex gap-4 md:flex-row lg:flex-row flex-col">
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-500" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">4.95
+                                        </p>
+                                        <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">out of
+                                        </p>
+                                        <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">5</p>
+                                    </div>
+                                    <div
+                                        class="flex w-fit items-center gap-2 border border-gray-300 rounded-full p-1 px-2">
+                                        <img class="object-cover h-3" src="assets/img/logo.svg" alt="Loading...">
+                                        <svg class="w-[0.90rem]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            fill="rgba(70,146,221,1)">
+                                            <path
+                                                d="M10.007 2.10377C8.60544 1.65006 7.08181 2.28116 6.41156 3.59306L5.60578 5.17023C5.51004 5.35763 5.35763 5.51004 5.17023 5.60578L3.59306 6.41156C2.28116 7.08181 1.65006 8.60544 2.10377 10.007L2.64923 11.692C2.71404 11.8922 2.71404 12.1078 2.64923 12.308L2.10377 13.993C1.65006 15.3946 2.28116 16.9182 3.59306 17.5885L5.17023 18.3942C5.35763 18.49 5.51004 18.6424 5.60578 18.8298L6.41156 20.407C7.08181 21.7189 8.60544 22.35 10.007 21.8963L11.692 21.3508C11.8922 21.286 12.1078 21.286 12.308 21.3508L13.993 21.8963C15.3946 22.35 16.9182 21.7189 17.5885 20.407L18.3942 18.8298C18.49 18.6424 18.6424 18.49 18.8298 18.3942L20.407 17.5885C21.7189 16.9182 22.35 15.3946 21.8963 13.993L21.3508 12.308C21.286 12.1078 21.286 11.8922 21.3508 11.692L21.8963 10.007C22.35 8.60544 21.7189 7.08181 20.407 6.41156L18.8298 5.60578C18.6424 5.51004 18.49 5.35763 18.3942 5.17023L17.5885 3.59306C16.9182 2.28116 15.3946 1.65006 13.993 2.10377L12.308 2.64923C12.1078 2.71403 11.8922 2.71404 11.692 2.64923L10.007 2.10377ZM6.75977 11.7573L8.17399 10.343L11.0024 13.1715L16.6593 7.51465L18.0735 8.92886L11.0024 15.9999L6.75977 11.7573Z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <span
+                                    class="bg-green-100 text-green-800 text-md font-medium inline-flex items-center px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-blue-400 border border-green-400">
+                                    <svg class="w-5 h-5 me-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                        fill="rgba(9,171,68,1)">
+                                        <path
+                                            d="M20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12ZM22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM13.5003 8C13.8278 8.43606 14.0625 8.94584 14.175 9.5H16V11H14.175C13.8275 12.7117 12.3142 14 10.5 14H10.3107L14.0303 17.7197L12.9697 18.7803L8 13.8107V12.5H10.5C11.4797 12.5 12.3131 11.8739 12.622 11H8V9.5H12.622C12.3131 8.62611 11.4797 8 10.5 8H8V6.5H16V8H13.5003Z">
+                                        </path>
+                                    </svg>
+                                    4999.00
+                                </span>
+                            </div>
+                            <h5 class="my-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy
+                                technology acquisitions 2021</h5>
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise
+                                technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                            <div class="flex items-center gap-2 text-red-400 dark:text-gray-400">
+                                <img src="assets/img/couple.png" class="w-5 object-cover cursor-pointer" alt="">
+                                <p>
+                                    couple friendly
+                                </p>
+                            </div>
+                            <div class="flex mt-3 w-full justify-between items-end">
+                                <ul class="font-normal text-sm text-gray-400 dark:text-gray-400">
+                                    <li>👉 &nbsp; Free Cancellation</li>
+                                    <li>👉 &nbsp; Breakfast avaliable at extra charges</li>
+                                    <li>👉 &nbsp; 10% off on food & beverage sercvice</li>
+                                    <li>👉 &nbsp; more...</li>
+                                </ul>
+                                <button type="button" (click)="bookNow()"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Book
+                                    Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,53 @@
+.loginBg {
+    background-color: #000000d3;
+    height: 100vh;
+}
+
+$input-width: 35px;
+$input-height: 35px;
+$border-radius: 8px;
+$spacing: 10px;
+$input-border-color: #ccc;
+$input-focus-border-color: #007bff;
+$background-color: #f9f9f9;
+$font-size: 14px;
+
+.otp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    // font-family: Arial, sans-serif;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.otp-inputs {
+    display: flex;
+    gap: $spacing;
+
+    .otp-input {
+        width: $input-width;
+        height: $input-height;
+        text-align: center;
+        font-size: $font-size;
+        border: 2px solid $input-border-color;
+        border-radius: $border-radius;
+        background-color: $background-color;
+        transition: border-color 0.3s ease-in-out;
+
+        &:focus {
+            outline: none;
+            border-color: $input-focus-border-color;
+            background-color: #e8f0fe;
+        }
+
+        &::placeholder {
+            color: transparent;
+        }
+    }
+}
